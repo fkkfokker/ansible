@@ -8,13 +8,12 @@
     dnf:
       update_cache=yes
 
-
   - name: upgrade all packages
     dnf:
       name: "*"
       state: latest
 
-  - name: install the latest version of Apache
+  - name: remove Apache
     dnf:
       name: httpd
-      state: latest
+      state: absent
