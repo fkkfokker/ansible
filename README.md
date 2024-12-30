@@ -1,4 +1,4 @@
 # ansible
-update
-kokos
-haluska
+# Version Control File
+
+ver 1.0.

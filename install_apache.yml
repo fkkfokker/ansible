@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+#  - name: install apache package
+#    dnf:
+#      name: httpd.x86_64
+
+  - name: Uninstall httpd but keep its dependencies
+    dnf:
+      name: httpd
+      state: absent
+      autoremove: yes
