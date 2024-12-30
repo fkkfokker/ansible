@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
+    shell: ifconfig | grep -i inet | tee /home/ansible/_ifconfig
+    args:
+      executable: /bin/bash
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Specifying a path directly
+    fetch:
+      src: /home/ansible/_ifconfig
+      dest: /home/ansible/ansible/data/_ifconfig-{{ inventory_hostname }}
+      flat: yes 
