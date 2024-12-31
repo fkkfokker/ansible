@@ -1,0 +1,21 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Copy c into the /usr/bin of the remote server 
+    copy:
+      src: /usr/bin/c
+      dest: /usr/bin/c
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=rx
+
+  - name: Copy p into the /usr/bin of the remote server 
+    copy:
+      src: /usr/bin/p
+      dest: /usr/bin/p
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=rx
