@@ -19,12 +19,28 @@
       owner: root
       group: root
       mode: u=rw,g=r,o=rx
+
+  - name: Copy c into the /usr/bin of the remote server
+    copy:
+      src: /usr/sbin/c
+      dest: /usr/bin/c
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=rx
+
+  - name: Copy p into the /usr/bin of the remote server
+    copy:
+      src: /usr/sbin/p
+      dest: /usr/bin/p
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=rx
  
   - name: Create a directory if it does not exist
     ansible.builtin.file:
       path: /var/applications/c
       state: directory
-      mode: '0755'
+      mode: u+rw,g+rw,o+rw
 
 #  - name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
 #    shell: /var/applications/c
