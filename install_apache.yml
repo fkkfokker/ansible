@@ -4,17 +4,58 @@
   become: true
   tasks:
 
-  - name: update repository index
+  - name: update repository index for Oopta
     dnf:
       update_cache=yes
+    when: ansible_distribution == "Oopta"
+
+  - name: update repository index for Maipo
+    yum:
+      update_cache=yes
+    when: ansible_distribution == "Maipo"
+
+  - name: update repository index for SLES15
+    community.general.zypper:
+    update_cache: true
+    when: ansible_distribution == "15-SP5"
 
 
-  - name: upgrade all packages
-    dnf:
-      name: "*"
-      state: latest
 
-  - name: install the latest version of Apache
-    dnf:
-      name: httpd
-      state: latest
+
+
+
+
+
+
+
+
+#  - name: upgrade all packages
+#    dnf:
+#      name: "*"
+#      state: latest
+#    when: ansible_distribution == "Oopta"
+#
+#  - name: install the latest version of Apache
+#    dnf:
+#      name: httpd
+#      state: latest
+#    when: ansible_distribution == "Oopta"
+#  
+#  
+#  
+#  - name: update repository index
+#    yum:
+#      update_cache=yes
+#    when: ansible_distribution == "Maipo"
+#
+#  - name: upgrade all packages
+#    yum:
+#      name: "*"
+#      state: latest
+#    when: ansible_distribution == "Maipo"
+#
+#  - name: install the latest version of Apache
+#    yum:
+#      name: httpd
+#      state: latest
+#    when: ansible_distribution == "Maipo"
