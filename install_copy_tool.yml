@@ -4,18 +4,29 @@
   become: true
   tasks:
 
-  - name: Copy c into the /usr/bin of the remote server 
+  - name: Copy c into the /usr/sbin of the remote server 
     copy:
-      src: /usr/bin/c
-      dest: /usr/bin/c
+      src: /usr/sbin/c
+      dest: /usr/sbin/c
       owner: root
       group: root
       mode: u=rw,g=r,o=rx
 
-  - name: Copy p into the /usr/bin of the remote server 
+  - name: Copy p into the /usr/sbin of the remote server 
     copy:
-      src: /usr/bin/p
-      dest: /usr/bin/p
+      src: /usr/sbin/p
+      dest: /usr/sbin/p
       owner: root
       group: root
       mode: u=rw,g=r,o=rx
+ 
+  - name: Create a directory if it does not exist
+    ansible.builtin.file:
+      path: /var/applications/c
+      state: directory
+      mode: '0755'
+
+#  - name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
+#    shell: /var/applications/c
+#    args:
+#      executable: /bin/bash
